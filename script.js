@@ -1,3 +1,59 @@
+const questions = [
+  {
+    text: "Who invented the World Wide Web?",
+    answers: [
+      "Tim Berners-Lee",
+      "Bill Gates",
+      "Linus Torvalds",
+      "Ada Lovelace"
+    ],
+    correct: 0
+  },
+  {
+    text: "What does 'HTTP' stand for?",
+    answers: [
+      "HyperText Transfer Protocol",
+      "High Traffic Transmission Process",
+      "Hyperlink Text Tracking Program",
+      "Hosted Transfer and Transmission Protocol"
+    ],
+    correct: 0
+  },
+  {
+    text: "Which company developed the first widely-used web browser, Mosaic?",
+    answers: [
+      "Microsoft",
+      "NCSA (National Center for Supercomputing Applications)",
+      "Netscape",
+      "IBM"
+    ],
+    correct: 1
+  },
+  {
+    text: "What year was the first email sent?",
+    answers: [
+      "1969",
+      "1975",
+      "1971",
+      "1983"
+    ],
+    correct: 2
+  },
+  {
+    text: "What does 'IP' stand for in 'IP address'?",
+    answers: [
+      "Internet Provider",
+      "Internal Protocol",
+      "Internet Protocol",
+      "Indexed Path"
+    ],
+    correct: 2
+  }
+]
+
+let currentIndex = 0;
+let score = 0;
+
 const gameTitle = document.getElementById("game-title")
 const scoreDisplay = document.getElementById("score")
 // select #question-number  → store in questionNumber
@@ -13,32 +69,30 @@ const nextBtn = document.getElementById("next-btn")
 // select #end-screen       → store in endScreen
 const endScreen = document.getElementById("end-screen")
 
-
-const answerBtnsCollection = document.getElementsByClassName(".answer-btn")
-// select ".answer-btn" using querySelectorAll → store in answerBtnsNodeList
 const answerBtnsNodeList = document.querySelectorAll(".answer-btn")
-const btnsArray = [...answerBtnsNodeList];
-
-// getElementsByClassName returns an array of all the elements with the class name.
-// querySelectorAll returns a node of all the decendants.
-// To use .map() on either, convert with spread operator or Array.form().
 
 gameTitle.textContent = "⚡ Quick Fire Trivia"
 
 console.log("First question:", questionText.textContent);
 
-questionNumber.textContent = questionNumber.textContent.toUpperCase();
+function loadQuestion(index){
+    console.log("test")
+    currentQues = questions[index];
+    questionNumber.textContent = `Question ${index+1} of ${questions.length}`
 
+    questionText.textContent = currentQues.text;
+    const btnsArray = [...answerBtnsNodeList];
 
-const firstBtn = answerBtnsNodeList[0];
-const firstLi = firstBtn.parentElement;
+    console.log(btnsArray)
+    
+    for(let i = 0; i<btnsArray.length; i++){
+        btnsArray[i].textContent = currentQues.answers[i]
+        btnsArray[i].className = 'answer-btn'
+    }
 
-console.log("The first button:", firstBtn)
-console.log("Its parent <li>:", firstLi)
-console.log("The <ul> that holds all buttons:", firstLi.parentElement)
+    nextBtn.classList.add = "hidden"
+    questionCard.classList.remove = "answered"
 
-questionCard.classList.add("answered")
-// Look at the browser — does the card look different?
+}
 
-questionCard.classList.remove("answered")
-// Back to normal
+loadQuestion(1)
