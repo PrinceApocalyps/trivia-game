@@ -14,3 +14,12 @@ const nextBtn = document.getElementById("next-btn")
 const endScreen = document.getElementById("end-screen")
 
 
+const answerBtnsCollection = document.getElementsByClassName("answer-btn")
+// select ".answer-btn" using querySelectorAll → store in answerBtnsNodeList
+const answerBtnsNodeList = document.querySelectorAll("answer-btn")
+const btnsArray = [...answerBtnsNodeList];
+
+// getElementsByClassName returns an array of all the elements with the class name.
+// querySelectorAll returns a node of all the decendants.
+// To use .map() on either, convert with spread operator or Array.form().
+
