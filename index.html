@@ -8,10 +8,25 @@
     <script src="/script.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1 id="game-title">Quick Fire Trivia</h1>
-        <div id="score-display">Score: <span id="score">0</span></div>
-    </header>
+    <main id="game">
+        <header>
+            <h1 id="game-title">Quick Fire Trivia</h1>
+            <div id="score-display">Score: <span id="score">0</span></div>
+        </header>        
+        <section id="question-card">
+            <p id="question-number">Question 1 of 5</p>
+            <h2 id="question-next">Who invented the World Wide Web?</h2>
+            <ul id="answer-list">
+                <li><button class="answer-btn">TIm Berners-Lee</button></li>
+                <li><button class="answer-btn">Bill Gates</button></li>
+                <li><button class="answer-btn">Linus Torvalds</button></li>
+                <li><button class="answer-btn">Ada Lovelace</button></li>
+            </ul>
+        </section>
+        <button id="next-btn" class="hidden">Next Question</button>
+        <section id="end-screen" class="hidden"></section>
+    </main>
+
     
 </body>
 </html>
