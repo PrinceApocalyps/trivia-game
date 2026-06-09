@@ -14,12 +14,31 @@ const nextBtn = document.getElementById("next-btn")
 const endScreen = document.getElementById("end-screen")
 
 
-const answerBtnsCollection = document.getElementsByClassName("answer-btn")
+const answerBtnsCollection = document.getElementsByClassName(".answer-btn")
 // select ".answer-btn" using querySelectorAll → store in answerBtnsNodeList
-const answerBtnsNodeList = document.querySelectorAll("answer-btn")
+const answerBtnsNodeList = document.querySelectorAll(".answer-btn")
 const btnsArray = [...answerBtnsNodeList];
 
 // getElementsByClassName returns an array of all the elements with the class name.
 // querySelectorAll returns a node of all the decendants.
 // To use .map() on either, convert with spread operator or Array.form().
 
+gameTitle.textContent = "⚡ Quick Fire Trivia"
+
+console.log("First question:", questionText.textContent);
+
+questionNumber.textContent = questionNumber.textContent.toUpperCase();
+
+
+const firstBtn = answerBtnsNodeList[0];
+const firstLi = firstBtn.parentElement;
+
+console.log("The first button:", firstBtn)
+console.log("Its parent <li>:", firstLi)
+console.log("The <ul> that holds all buttons:", firstLi.parentElement)
+
+questionCard.classList.add("answered")
+// Look at the browser — does the card look different?
+
+questionCard.classList.remove("answered")
+// Back to normal
