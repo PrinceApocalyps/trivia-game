@@ -90,9 +90,51 @@ function loadQuestion(index){
         btnsArray[i].className = 'answer-btn'
     }
 
-    nextBtn.classList.add = "hidden"
-    questionCard.classList.remove = "answered"
+    nextBtn.classList.add("hidden")
+    questionCard.classList.remove("answered")
 
 }
 
-loadQuestion(1)
+loadQuestion(currentIndex)
+
+answerList.addEventListener("click", (event) => {
+  // 1. If the click was not on a BUTTON element, return early and do nothing
+  //    hint: check event.target.tagName — it will be the string "BUTTON" if a button was clicked
+    if(event.target.tagName === "BUTTON"){
+                
+        // 2. Store the clicked button and figure out which index it is in the list
+        //    hint: convert answerBtnsNodeList to an array and use .indexOf(event.target)
+        const btnsArray = [...answerBtnsNodeList];
+        let pick = btnsArray.indexOf(event.target);
+        
+  // 3. Get the correct answer index from the current question in the data array
+        corr_ans_indx = questions[currentIndex].correct; 
+
+// 4. Compare: did the player pick the right one?
+  //    - If correct: add the "correct" class to the clicked button, increment score,
+  //      and update scoreDisplay.textContent
+  //    - If wrong: add the "wrong" class to the clicked button,
+  //      and add "correct" to the button at the correct index to reveal it
+        if(pick === corr_ans_indx){
+            event.target.classList.add("correct");
+            score++;
+            scoreDisplay.textContent = score;
+        }else{
+            event.target.classList.add("wrong");
+            btnsArray[corr_ans_indx].classList.add("correct");
+        }
+
+        // 5. Disable all four answer buttons so the player can't change their answer
+        //    hint: convert to a real array and use forEach to add "disabled" to each
+        for(let i = 0; i<btnsArray.length; i++){
+            btnsArray[i].classList.add('disabled');
+        }
+
+        // 6. Add "answered" to questionCard and remove "hidden" from nextBtn
+        questionCard.classList.add("answered");
+        nextBtn.classList.remove("hidden");
+
+    }
+
+
+})
