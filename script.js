@@ -53,6 +53,7 @@ const questions = [
 
 let currentIndex = 0;
 let score = 0;
+let usedIndex = [];
 
 const gameTitle = document.getElementById("game-title")
 const scoreDisplay = document.getElementById("score")
@@ -74,6 +75,12 @@ const answerBtnsNodeList = document.querySelectorAll(".answer-btn")
 gameTitle.textContent = "⚡ Quick Fire Trivia"
 
 console.log("First question:", questionText.textContent);
+
+// Generate a random index
+function getRandomIndex(max){
+  return Math.floor(Math.random()*max);
+}
+
 
 function loadQuestion(index){
     console.log("test")
@@ -177,19 +184,22 @@ function showEndScreen() {
 
 
 nextBtn.addEventListener("click", () => {
-  // 1. Increment currentIndex
-  currentIndex ++;
-
-  // 2. If there are more questions left (currentIndex < questions.length):
-  //    - Call loadQuestion with the updated index
-  if(currentIndex<questions.length){
-    loadQuestion(currentIndex);
-  }else{
-    // 3. Otherwise the game is over — call showEndScreen()
+  if (usedIndex.length >= questions.length) {
     showEndScreen();
+    return;
   }
-  
-})
+
+  while (true) {
+    let x = getRandomIndex(questions.length - 1);
+    if (!usedIndex.includes(x)) {
+      currentIndex = x;
+      usedIndex.push(x);
+      break;
+    }
+  }
+
+  loadQuestion(currentIndex);
+});
 
 endScreen.addEventListener("click", (event)=>{
     if(event.target.id==="restart-btn"){

@@ -7,9 +7,10 @@
 
 body {
   height: 100vh;
+  background-color: #071d66;
   background-image: url("/knicksPoster.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: auto 140vh;
   background-position: center center;
   display: flex;
   align-items: center;
@@ -23,7 +24,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  background-color: #0A2A92;
+  background-color: rgba(10, 42, 146, 0.5411764706);
   padding: 50px;
   border-radius: 20px;
 }
