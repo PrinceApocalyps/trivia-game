@@ -56,6 +56,8 @@ let score = 0;
 let counter = 1;
 let usedIndex = [0];
 
+const game = document.getElementById("game")
+const startBtn = document.getElementById("start")
 const gameTitle = document.getElementById("game-title")
 const scoreDisplay = document.getElementById("score")
 // select #question-number  → store in questionNumber
@@ -74,8 +76,8 @@ const endScreen = document.getElementById("end-screen")
 const answerBtnsNodeList = document.querySelectorAll(".answer-btn")
 
 gameTitle.textContent = "⚡ Quick Fire Trivia"
-
-console.log("First question:", questionText.textContent);
+game.style.display = "none";
+startBtn.textContent = "Let's See if You Know Your Knicks!!"
 
 function getRandomIndex(min, max) {
   const minCeiled = Math.ceil(min);
@@ -220,4 +222,9 @@ endScreen.addEventListener("click", (event)=>{
         loadQuestion(currentIndex)
     }
 
+})
+
+startBtn.addEventListener("click", ()=>{
+  game.style.display = ""
+  startBtn.style.display = "none"
 })

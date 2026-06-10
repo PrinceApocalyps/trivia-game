@@ -19,6 +19,7 @@ body{
 
 }
 
+
 #game{
     width: 70rem;
     height: 50vh;
@@ -39,33 +40,33 @@ body{
     }
 
     
-    /* Applied to the button the player clicked — correct answer */
+    // /* Applied to the button the player clicked — correct answer */
     .correct {
     background-color: #4caf50;
     color: white;
     border-color: #388e3c;
     }
 
-    /* Applied to the button the player clicked — wrong answer */
+    // /* Applied to the button the player clicked — wrong answer */
     .wrong {
     background-color: #e53935;
     color: white;
     border-color: #c62828;
     }
 
-    /* Applied to all answer buttons after a choice is made */
+    // /* Applied to all answer buttons after a choice is made */
     .disabled {
     opacity: 0.5;
     pointer-events: none;
     cursor: default;
     }
 
-    /* Applied to #question-card after an answer is locked in */
+    // /* Applied to #question-card after an answer is locked in */
     .answered {
     border-left: 4px solid #90a4ae;
     }
 
-    /* Hides an element — used on next-btn and end-screen initially */
+    // /* Hides an element — used on next-btn and end-screen initially */
     .hidden {
     display: none;
     }
@@ -152,4 +153,19 @@ body{
     font-size: 1.5rem;
 
     border-radius: 10px;
+}
+
+#start{
+    margin-top: 5rem;
+    padding: 1rem;
+    font-size: 2.5rem;
+    border: 5px solid #071d66;
+    border-radius: 50px;
+
+    color: #F58426;
+    &:hover{
+        cursor: pointer;
+        font-size: 2.6rem;
+        background-color: #071d6670;
+    }
 }
