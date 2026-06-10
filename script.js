@@ -213,6 +213,7 @@ endScreen.addEventListener("click", (event)=>{
     if(event.target.id==="restart-btn"){
         currentIndex = 0;
         score = 0;
+        counter = 1;
         usedIndex = [0]
         scoreDisplay.textContent = score;
 
