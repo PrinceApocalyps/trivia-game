@@ -91,21 +91,22 @@ body{
 
     color: #E9B8C9;
 
-    gap: 1rem;
+    gap: .5rem;
 
     #question-number{
-        font-size: 2rem;
+        font-size: 1.5rem;
         padding-bottom: .5rem;
     }
 
     #question-next{
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         padding-bottom: 1rem;
     }
     #answer-list{
         display: flex;
         flex-direction: column;
         gap: .5rem;
+        margin-top: 1rem;
 
         list-style: none;
         width: 100%;
