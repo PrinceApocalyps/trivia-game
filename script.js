@@ -53,7 +53,8 @@ const questions = [
 
 let currentIndex = 0;
 let score = 0;
-let usedIndex = [];
+let counter = 1;
+let usedIndex = [0];
 
 const gameTitle = document.getElementById("game-title")
 const scoreDisplay = document.getElementById("score")
@@ -76,16 +77,15 @@ gameTitle.textContent = "⚡ Quick Fire Trivia"
 
 console.log("First question:", questionText.textContent);
 
-// Generate a random index
-function getRandomIndex(max){
-  return Math.floor(Math.random()*max);
+function getRandomIndex(min, max) {
+  const minCeiled = Math.ceil(min);
+  const maxFloored = Math.floor(max);
+  return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
 }
-
-
 function loadQuestion(index){
     console.log("test")
     currentQues = questions[index];
-    questionNumber.textContent = `Question ${index+1} of ${questions.length}`
+    questionNumber.textContent = `Question ${counter} of ${questions.length}`
 
     questionText.textContent = currentQues.text;
     const btnsArray = [...answerBtnsNodeList];
@@ -182,15 +182,20 @@ function showEndScreen() {
 }
 
 
-
 nextBtn.addEventListener("click", () => {
+  console.log(usedIndex.length)
+  console.log(questions.length)
   if (usedIndex.length >= questions.length) {
+    console.log("test")
     showEndScreen();
     return;
   }
 
   while (true) {
-    let x = getRandomIndex(questions.length - 1);
+    let x = getRandomIndex(1,4);
+    console.log("rands: ")
+    console.log(x);
+    console.log("end")
     if (!usedIndex.includes(x)) {
       currentIndex = x;
       usedIndex.push(x);
@@ -198,6 +203,7 @@ nextBtn.addEventListener("click", () => {
     }
   }
 
+  counter++
   loadQuestion(currentIndex);
 });
 
@@ -205,6 +211,7 @@ endScreen.addEventListener("click", (event)=>{
     if(event.target.id==="restart-btn"){
         currentIndex = 0;
         score = 0;
+        usedIndex = [0]
         scoreDisplay.textContent = score;
 
         endScreen.innerHTML = "";
