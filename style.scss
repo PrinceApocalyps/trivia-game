@@ -6,10 +6,16 @@
 
 body{
     height: 100vh;
-    background-color: #5992C6;
+    background-image: url("/knicksPoster.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+
 }
 
 #game{
@@ -29,6 +35,38 @@ body{
     header{
         display: flex;
         flex-direction: column;
+    }
+
+    
+    /* Applied to the button the player clicked — correct answer */
+    .correct {
+    background-color: #4caf50;
+    color: white;
+    border-color: #388e3c;
+    }
+
+    /* Applied to the button the player clicked — wrong answer */
+    .wrong {
+    background-color: #e53935;
+    color: white;
+    border-color: #c62828;
+    }
+
+    /* Applied to all answer buttons after a choice is made */
+    .disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: default;
+    }
+
+    /* Applied to #question-card after an answer is locked in */
+    .answered {
+    border-left: 4px solid #90a4ae;
+    }
+
+    /* Hides an element — used on next-btn and end-screen initially */
+    .hidden {
+    display: none;
     }
 }
 
@@ -79,6 +117,26 @@ body{
     }
 }
 
+#end-screen{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    color: #f891b5;
+
+    width: 80%;
+    height: 60%;
+    gap: 1rem;
+
+    h2{
+        font-size: 5rem;
+    }
+    p{
+        font-size: 2rem;
+    }
+}
+
 #next-btn{
     margin-top: 4rem;
     padding: 1rem;
@@ -87,41 +145,10 @@ body{
     border-radius: 10px;
 }
 
-#end-screen{
+#restart-btn{
     margin-top: 4rem;
     padding: 1rem;
     font-size: 1.5rem;
 
     border-radius: 10px;
-}
-
-/* Applied to the button the player clicked — correct answer */
-.correct {
-  background-color: #4caf50;
-  color: white;
-  border-color: #388e3c;
-}
-
-/* Applied to the button the player clicked — wrong answer */
-.wrong {
-  background-color: #e53935;
-  color: white;
-  border-color: #c62828;
-}
-
-/* Applied to all answer buttons after a choice is made */
-.disabled {
-  opacity: 0.5;
-  pointer-events: none;
-  cursor: default;
-}
-
-/* Applied to #question-card after an answer is locked in */
-.answered {
-  border-left: 4px solid #90a4ae;
-}
-
-/* Hides an element — used on next-btn and end-screen initially */
-.hidden {
-  display: none;
 }

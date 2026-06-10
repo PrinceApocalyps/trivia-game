@@ -1,53 +1,53 @@
 const questions = [
   {
-    text: "Who invented the World Wide Web?",
+    text: "Who is the Knicks' all-time leading scorer?",
     answers: [
-      "Tim Berners-Lee",
-      "Bill Gates",
-      "Linus Torvalds",
-      "Ada Lovelace"
+      "Patrick Ewing",
+      "Walt Frazier",
+      "Carmelo Anthony",
+      "Bernard King"
     ],
     correct: 0
   },
   {
-    text: "What does 'HTTP' stand for?",
+    text: "What does 'MSG' stand for, the Knicks' home arena?",
     answers: [
-      "HyperText Transfer Protocol",
-      "High Traffic Transmission Process",
-      "Hyperlink Text Tracking Program",
-      "Hosted Transfer and Transmission Protocol"
-    ],
-    correct: 0
-  },
-  {
-    text: "Which company developed the first widely-used web browser, Mosaic?",
-    answers: [
-      "Microsoft",
-      "NCSA (National Center for Supercomputing Applications)",
-      "Netscape",
-      "IBM"
+      "Manhattan Sports Garden",
+      "Madison Square Garden",
+      "Metro Sports Ground",
+      "Midtown Stadium and Garden"
     ],
     correct: 1
   },
   {
-    text: "What year was the first email sent?",
+    text: "Which team did the Knicks defeat to win their second NBA Championship in 1973?",
     answers: [
-      "1969",
-      "1975",
-      "1971",
-      "1983"
+      "Boston Celtics",
+      "Milwaukee Bucks",
+      "Los Angeles Lakers",
+      "Chicago Bulls"
     ],
     correct: 2
   },
   {
-    text: "What does 'IP' stand for in 'IP address'?",
+    text: "What year were the New York Knicks founded?",
     answers: [
-      "Internet Provider",
-      "Internal Protocol",
-      "Internet Protocol",
-      "Indexed Path"
+      "1952",
+      "1965",
+      "1946",
+      "1950"
     ],
     correct: 2
+  },
+  {
+    text: "What does 'NBA' stand for in 'NBA Draft'?",
+    answers: [
+      "National Basketball Association",
+      "National Ballers Alliance",
+      "New Basketball Association",
+      "National Basketball Academy"
+    ],
+    correct: 0
   }
 ]
 
@@ -95,7 +95,6 @@ function loadQuestion(index){
 
 }
 
-loadQuestion(currentIndex)
 
 answerList.addEventListener("click", (event) => {
   // 1. If the click was not on a BUTTON element, return early and do nothing
@@ -135,6 +134,73 @@ answerList.addEventListener("click", (event) => {
         nextBtn.classList.remove("hidden");
 
     }
+})
 
+function showEndScreen() {
+  // 1. Hide the question card
+    console.log("test")
+    questionCard.style.display = "none";
+    nextBtn.classList.add("hidden")
+
+
+  // 2. Show the end screen (it started with class="hidden" — remove that now)
+    endScreen.classList.remove("hidden");
+
+  // 3. Create an <h2> and set its textContent to show the final score
+  //    e.g. "You scored 3 out of 5"
+  //    hint: use the score and questions.length variables
+    const heading = document.createElement("h2");
+    heading.textContent = `You Scored ${score} out of ${questions.length}`;
+
+  // 4. Create a <p> for an encouragement message
+  //    Write a conditional with at least two different messages
+  //    (e.g. one for a perfect score, one for passing, one for failing)
+    const message = document.createElement("p");
+    if (score === questions.length){
+        message.textContent = "You Got em All!!";
+    }else if(score >= questions.length/2){
+        message.textContent = "You Did Great!!"
+    }else{
+        message.textContent = "You Can Do Better!!"
+    }
+  // 5. Create a <button>, set its id to "restart-btn" and its textContent to "Play Again"
+    const restartBtn = document.createElement("button");
+    restartBtn.id = "restart-btn";
+    restartBtn.textContent = "Play Again";
+  // 6. Append all three elements to endScreen
+  //    note: createElement builds the node in memory — appendChild is what puts it on the page
+    endScreen.appendChild(heading);
+    endScreen.appendChild(message);
+    endScreen.appendChild(restartBtn);
+}
+
+
+
+nextBtn.addEventListener("click", () => {
+  // 1. Increment currentIndex
+  currentIndex ++;
+
+  // 2. If there are more questions left (currentIndex < questions.length):
+  //    - Call loadQuestion with the updated index
+  if(currentIndex<questions.length){
+    loadQuestion(currentIndex);
+  }else{
+    // 3. Otherwise the game is over — call showEndScreen()
+    showEndScreen();
+  }
+  
+})
+
+endScreen.addEventListener("click", (event)=>{
+    if(event.target.id==="restart-btn"){
+        currentIndex = 0;
+        score = 0;
+        scoreDisplay.textContent = score;
+
+        endScreen.innerHTML = "";
+        endScreen.classList.add("hidden")
+        questionCard.style.display = "flex"
+        loadQuestion(currentIndex)
+    }
 
 })
